@@ -511,14 +511,41 @@ const OSForm = ({ navigation }) => {
           </View>
 
           <Text style={styles.sectionLabel}>Solicitação Efetuada</Text>
+          {/*DATA Solicitacao*/}
           <Field
-            label="Data da Solicitação"
+            label="Data Solicitação"
             value={formData.dataSolicitacao}
             onChangeText={(text) =>
               setFormData({ ...formData, dataSolicitacao: text })
             }
             multiline
           />
+          <Button
+            title="Selecionar Data"
+            onPress={() => openCalendarModal("dataSolicitacao")} // Passe o campo correspondente
+          />
+          <Modal
+            animationType="slide"
+            transparent={false}
+            visible={formData.isCalendarVisible}
+          >
+            <View style={styles.modalContainer}>
+              <Calendar
+                onDayPress={(date) => handleDateSelect(date)} // Use a função atualizada
+              />
+              <Button
+                title="Fechar"
+                onPress={() =>
+                  setFormData({
+                    ...formData,
+                    isCalendarVisible: false,
+                    selectedDateField: null,
+                  })
+                }
+              />
+            </View>
+          </Modal>
+          {/*FIM DATA Solicitacao*/}
           <Field
             label="Solicitante"
             value={formData.solicitante}
@@ -537,57 +564,41 @@ const OSForm = ({ navigation }) => {
 
           <Text style={styles.sectionLabel}>Quadro de Horários</Text>
           <Text style={styles.sectionLabel}>Metalsoft</Text>
+          <Field
+            label="Chegada MetalSoft"
+            value={formData.chegadaMetalsoft}
+            onChangeText={(text) =>
+              setFormData({ ...formData, chegadaMetalsoft: text })
+            }
+          />
+          <Field
+            label="Entrada"
+            value={formData.entradaMetalsoft}
+            onChangeText={(text) =>
+              setFormData({ ...formData, entradaMetalsoft: text })
+            }
+          />
+          <Field
+            label="Saida"
+            value={formData.saidaMetalsoft}
+            onChangeText={(text) =>
+              setFormData({ ...formData, saidaMetalsoft: text })
+            }
+          />
           <Text style={styles.sectionLabel}>Cliente</Text>
           {/* Hora Entrada Cliente */}
-          {/* <View>
-            <Text style={styles.label}>Entrada Cliente:</Text>
-            <TextInput
-              style={styles.input}
-              value={formData.entradaCliente}
-              editable={false}
-            />
-            <Button
-              title="Escolher Hora"
-              onPress={() => setTimePickerModalVisible(true)}
-            />
-          </View> */}
-
-          {/* Modal do Seletor de Hora */}
-          {/* <Modal
-            animationType="slide"
-            transparent={true}
-            visible={isTimePickerModalVisible}
-          > */}
-          {/* <View style={styles.timePickerContainer}>
-              <DateTimePicker
-                value={selectedEntradaClienteTime} // Use a variável de estado para definir o valor
-                mode="time"
-                is24Hour={true}
-                display="clock"
-                onChange={(event, selectedTime) => {
-                  if (event.type === "set") {
-                    // Atualize a variável de estado e o estado formData com a hora selecionada
-                    setSelectedEntradaClienteTime(selectedTime);
-                    const formattedTime = `${selectedTime.getHours()}:${selectedTime.getMinutes()}`;
-                    setFormData({
-                      ...formData,
-                      entradaCliente: formattedTime,
-                    });
-                  }
-                }}
-              /> */}
-          {/* <Button
-                title="Confirmar"
-                onPress={() => setTimePickerModalVisible(false)}
-              />
-            </View>
-          </Modal> */}
-          {/* Fim Entrada Cliente */}
+          <Field
+            label="Entrada"
+            value={formData.entradaCliente}
+            onChangeText={(text) =>
+              setFormData({ ...formData, entradaCliente: text })
+            }
+          />
           <Field
             label="Início Almoço"
-            value={formData.fimAlmocoCliente}
+            value={formData.inicioAlmocoCliente}
             onChangeText={(text) =>
-              setFormData({ ...formData, fimAlmocoCliente: text })
+              setFormData({ ...formData, inicioAlmocoCliente: text })
             }
           />
           <Field

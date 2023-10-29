@@ -250,13 +250,6 @@ const OSForm = ({ navigation }) => {
         recipients: recipients,
         attachments: attachments,
       });
-
-      await MailComposer.composeAsync({
-        subject: emailSubject,
-        body: emailBody,
-        recipients: recipients,
-        attachments: [attachment],
-      });
     } catch (error) {
       console.error("Erro ao criar o arquivo CSV:", error);
       alert(

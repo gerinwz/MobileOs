@@ -24,7 +24,7 @@ const CalculatorScreen = ({ navigation }) => {
 
   return (
     <ImageBackground
-      source={require("./assets/backgroud.png")}
+      source={require("./assets/backgroud.jpg")}
       style={styles.background}
     >
       <View style={styles.container}>

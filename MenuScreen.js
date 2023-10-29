@@ -14,13 +14,6 @@ const MenuScreen = ({ navigation }) => {
       style={styles.background}
     >
       <View style={styles.container}>
-        {/* "Calculadora" Button */}
-        <TouchableOpacity
-          style={[styles.button, { backgroundColor: "blue" }]}
-          onPress={() => navigation.navigate("Calculator")}
-        >
-          <Text style={styles.buttonText}>Calculadora</Text>
-        </TouchableOpacity>
         {/* "OS Form */}
         <TouchableOpacity
           style={[styles.button, { backgroundColor: "blue" }]}
@@ -28,19 +21,11 @@ const MenuScreen = ({ navigation }) => {
         >
           <Text style={styles.buttonText}>Sistema de OS</Text>
         </TouchableOpacity>
-
-        {/* "Cálculo de Data" Button */}
         <TouchableOpacity
-          style={[styles.button, { backgroundColor: "blue" }]}
-          onPress={() => navigation.navigate("DateCalculator")}
+          style={[styles.button, { backgroundColor: "red" }]} // Estilize o botão de volta como desejado
+          onPress={() => navigation.navigate("Login")} // Navegue de volta para a tela de login
         >
-          <Text style={styles.buttonText}>Cálculo de Data</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button, { backgroundColor: "blue" }]}
-          onPress={() => navigation.navigate("DateCalculator")}
-        >
-          <Text style={styles.buttonText}>Calculo Idade</Text>
+          <Text style={styles.buttonText}>Voltar para o Login</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>

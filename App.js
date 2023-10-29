@@ -3,8 +3,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import MenuScreen from "./MenuScreen";
 import OSForm from "./OSForm";
-import CalculatorScreen from "./CalculatorScreen";
-import DateCalculatorScreen from "./DateCalculatorScreen";
 import LoginScreen from "./LoginScreen"; // Importe o novo componente
 
 const Stack = createStackNavigator();
@@ -24,20 +22,9 @@ const App = () => {
           options={{ title: "Menu" }}
         />
         <Stack.Screen
-          name="Calculator"
-          component={CalculatorScreen}
-          options={{ title: "Calculadora" }}
-        />
-        <Stack.Screen
           name="OSForm"
           component={OSForm}
           options={{ title: "Ordem de servico" }}
-        />
-
-        <Stack.Screen
-          name="DateCalculator"
-          component={DateCalculatorScreen}
-          options={{ title: "Cálculo de Data" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { Calendar } from "react-native-calendars";
 import * as FileSystem from "expo-file-system";
 import * as MailComposer from "expo-mail-composer";
@@ -714,8 +715,7 @@ const OSForm = ({ navigation }) => {
               />
             </View>
           </Modal>
-
-          <Button title="Sair" onPress={handleLogout} />
+          <Button title="Sair" onPress={() => navigation.navigate("Menu")} />
           <Button title="Gerar CSV" onPress={createCSV} />
         </View>
       </ScrollView>

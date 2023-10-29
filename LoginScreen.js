@@ -85,9 +85,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   errorText: {
-    color: "red",
-    fontSize: 16,
-    marginTop: 10,
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
+    textShadowColor: "black",
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 4,
   },
   background: {
     flex: 1,

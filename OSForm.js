@@ -15,7 +15,7 @@ import { Calendar } from "react-native-calendars";
 import * as FileSystem from "expo-file-system";
 import * as MailComposer from "expo-mail-composer";
 import SignatureScreen from "react-native-signature-canvas";
-//import DateTimePicker from "@react-native-community/datetimepicker";
+import DatePicker from 'react-native-modern-datepicker';
 
 const Field = ({ label, value, onChangeText }) => (
   <View>
@@ -323,17 +323,40 @@ const OSForm = ({ navigation }) => {
   const openEntradaClienteTimePicker = () => {
     setFormData({ ...formData, isTimePickerVisible: true });
   };
-  const [isTimePickerModalVisible, setTimePickerModalVisible] = useState(false);
-  const [selectedEntradaClienteTime, setSelectedEntradaClienteTime] = useState(
-    new Date()
-  );
 
-  const handleTimeChange = (event, selectedTime) => {
+  const TimePickerExample = () => {
+    const [time, setTime] = useState('');
+  }
+  const [isEntradaClientePickerVisible, setEntradaClientePickerVisible] = useState(false);
+  const [selectedEntradaClienteTime, setSelectedEntradaClienteTime] = useState(null);
+
+  const handleEntradaTimeChange = (event, selectedTime) => {
     if (selectedTime) {
       const formattedTime = selectedTime.toLocaleTimeString();
       setFormData({
         ...formData,
         entradaCliente: formattedTime,
+        isTimePickerVisible: false,
+      });
+    } else {
+      setFormData({ ...formData, isTimePickerVisible: false });
+    }
+  };
+
+  //HORA INICIO ALMOCO
+  const openInicoAlmocoClienteTimePicker = () => {
+    setFormData({ ...formData, isTimePickerVisible: true });
+  };
+
+  const [isInicioalmocoClientePickerVisible, setInicioAlmocoClientePickerVisible] = useState(false);
+  const [selectedInicioAlmocoClienteTime, setSelectedInicioAlmocoClienteTime] = useState(null);
+
+  const handleIncioAlmocoTimeChange = (event, selectedTime) => {
+    if (selectedTime) {
+      const formattedTime = selectedTime.toLocaleTimeString();
+      setFormData({
+        ...formData,
+        inicioAlmocoCliente: formattedTime,
         isTimePickerVisible: false,
       });
     } else {
@@ -581,20 +604,41 @@ const OSForm = ({ navigation }) => {
           />
           <Text style={styles.sectionLabel}>Cliente</Text>
           {/* Hora Entrada Cliente */}
-          <Field
-            label="Entrada"
-            value={formData.entradaCliente}
-            onChangeText={(text) =>
-              setFormData({ ...formData, entradaCliente: text })
-            }
-          />
-          <Field
-            label="Início Almoço"
-            value={formData.inicioAlmocoCliente}
-            onChangeText={(text) =>
-              setFormData({ ...formData, inicioAlmocoCliente: text })
-            }
-          />
+          <View>
+            <Text style={styles.label}>Entrada:</Text>
+          </View>
+          <TouchableOpacity onPress={() => setEntradaClientePickerVisible(true)}>
+            <Text style={styles.input}>{formData.entradaCliente}</Text>
+          </TouchableOpacity>{isEntradaClientePickerVisible && (
+            <DatePicker
+              mode="time"
+              minuteInterval={3}
+              onTimeChange={(selectedTime) => {
+                setSelectedEntradaClienteTime(selectedTime);
+                setFormData({ ...formData, entradaCliente: selectedTime })
+                setEntradaClientePickerVisible(false);
+              }}
+            />
+          )}
+          {/* Fim Hora Entrada Cliente */}
+          {/* Hora Inicio almoço */}
+          <View>
+            <Text style={styles.label}>Inicio Almoço:</Text>
+          </View>
+          <TouchableOpacity onPress={() => setInicioAlmocoClientePickerVisible(true)}>
+            <Text style={styles.input}>{formData.inicioAlmocoCliente}</Text>
+          </TouchableOpacity>{isInicioalmocoClientePickerVisible && (
+            <DatePicker
+              mode="time"
+              minuteInterval={3}
+              onTimeChange={(selectedTime) => {
+                setSelectedInicioAlmocoClienteTime(selectedTime);
+                setFormData({ ...formData, inicioAlmocoCliente: selectedTime })
+                setInicioAlmocoClientePickerVisible(false);
+              }}
+            />
+          )}
+          {/* Fim Hora Entrada Cliente */}
           <Field
             label="Fim Almoço"
             value={formData.fimAlmocoCliente}
@@ -675,7 +719,7 @@ const OSForm = ({ navigation }) => {
           <Field
             label="Assinatura Resp. Metalsoft"
             value={signature ? "Assinatura Capturada" : "Nenhuma Assinatura"}
-            onChangeText={() => {}}
+            onChangeText={() => { }}
           />
           <Button
             title="Responsável Metalsoft Assinar"
@@ -701,7 +745,7 @@ const OSForm = ({ navigation }) => {
           <Field
             label="Assinatura Resp. Cliente"
             value={signature ? "Assinatura Capturada" : "Nenhuma Assinatura"}
-            onChangeText={() => {}}
+            onChangeText={() => { }}
           />
           <Button
             title="Responsável Cliente Assinar"

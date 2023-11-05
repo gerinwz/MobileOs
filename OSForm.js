@@ -342,21 +342,120 @@ const OSForm = ({ navigation }) => {
       setFormData({ ...formData, isTimePickerVisible: false });
     }
   };
-
   //HORA INICIO ALMOCO
-  const openInicoAlmocoClienteTimePicker = () => {
-    setFormData({ ...formData, isTimePickerVisible: true });
-  };
-
   const [isInicioalmocoClientePickerVisible, setInicioAlmocoClientePickerVisible] = useState(false);
   const [selectedInicioAlmocoClienteTime, setSelectedInicioAlmocoClienteTime] = useState(null);
 
-  const handleIncioAlmocoTimeChange = (event, selectedTime) => {
+  const openInicioAlmocoClienteTimePicker = () => {
+    setFormData({ ...formData, isTimePickerVisible: true });
+  };
+  const handleInicioAlmocoTimeChange = (event, selectedTime) => {
     if (selectedTime) {
       const formattedTime = selectedTime.toLocaleTimeString();
       setFormData({
         ...formData,
         inicioAlmocoCliente: formattedTime,
+        isTimePickerVisible: false,
+      });
+    } else {
+      setFormData({ ...formData, isTimePickerVisible: false });
+    }
+  };
+
+  //HORA FIM ALMOCO
+  const openFimAlmocoClienteTimePicker = () => {
+    setFormData({ ...formData, isTimePickerVisible: true });
+  };
+
+  const [isFimAlmocoClientePickerVisible, setFimAlmocoClientePickerVisible] = useState(false);
+  const [selectedFimAlmocoClienteTime, setSelectedFimAlmocoClienteTime] = useState(null);
+
+  const handleFimAlmocoTimeChange = (event, selectedTime) => {
+    if (selectedTime) {
+      const formattedTime = selectedTime.toLocaleTimeString();
+      setFormData({
+        ...formData,
+        FimAlmocoCliente: formattedTime,
+        isTimePickerVisible: false,
+      });
+    } else {
+      setFormData({ ...formData, isTimePickerVisible: false });
+    }
+  };
+  ///HORA SAIDA CLIENTE
+  const opensaidaClienteTimePicker = () => {
+    setFormData({ ...formData, isTimePickerVisible: true });
+  };
+
+  const [issaidaClientePickerVisible, setsaidaClientePickerVisible] = useState(false);
+  const [selectedsaidaClienteTime, setSelectedsaidaClienteTime] = useState(null);
+
+  const handleSaidaClienteTimeChange = (event, selectedTime) => {
+    if (selectedTime) {
+      const formattedTime = selectedTime.toLocaleTimeString();
+      setFormData({
+        ...formData,
+        saidaCliente: formattedTime,
+        isTimePickerVisible: false,
+      });
+    } else {
+      setFormData({ ...formData, isTimePickerVisible: false });
+    }
+  };
+  //HORA SAIDA METALSOFT
+  const opensaidaMetalsoftTimePicker = () => {
+    setFormData({ ...formData, isTimePickerVisible: true });
+  };
+
+  const [issaidaMetalsoftPickerVisible, setsaidaMetalsoftPickerVisible] = useState(false);
+  const [selectedsaidaMetalsoftTime, setSelectedsaidaMetalsoftTime] = useState(null);
+
+  const handlesaidaMetalsoftTimeChange = (event, selectedTime) => {
+    if (selectedTime) {
+      const formattedTime = selectedTime.toLocaleTimeString();
+      setFormData({
+        ...formData,
+        saidaMetalsoft: formattedTime,
+        isTimePickerVisible: false,
+      });
+    } else {
+      setFormData({ ...formData, isTimePickerVisible: false });
+    }
+  };
+  //HORA ENTRADA METALSOFT
+  const openEntradaMetalsoftTimePicker = () => {
+    setFormData({ ...formData, isTimePickerVisible: true });
+  };
+
+  const [isEntradaMetalsoftPickerVisible, setEntradaMetalsoftPickerVisible] = useState(false);
+  const [selectedEntradaMetalsoftTime, setSelectedEntradaMetalsoftTime] = useState(null);
+
+  const handleEntradaMetalsoftTimeChange = (event, selectedTime) => {
+    if (selectedTime) {
+      const formattedTime = selectedTime.toLocaleTimeString();
+      setFormData({
+        ...formData,
+        EntradaMetalsoft: formattedTime,
+        isTimePickerVisible: false,
+      });
+    } else {
+      setFormData({ ...formData, isTimePickerVisible: false });
+    }
+  };
+  //HORA CHEGADA METALSOFT
+  const openchegadaMetalsoftTimePicker = () => {
+    setFormData({ ...formData, isTimePickerVisible: true });
+  };
+
+  const [ischegadaMetalsoftPickerVisible, setchegadaMetalsoftPickerVisible] = useState(false);
+  const [selectedchegadaMetalsoftTime, setSelectedchegadaMetalsoftTime] = useState(null);
+
+  const handlechegadaMetalsoftTimeChange = (event, selectedTime) => {
+    if (selectedTime) {
+      const formattedTime = selectedTime.toLocaleTimeString();
+      setFormData({
+        ...formData,
+        chegadaMetalsoft: formattedTime,
         isTimePickerVisible: false,
       });
     } else {
@@ -581,27 +680,60 @@ const OSForm = ({ navigation }) => {
 
           <Text style={styles.sectionLabel}>Quadro de Horários</Text>
           <Text style={styles.sectionLabel}>Metalsoft</Text>
-          <Field
-            label="Chegada MetalSoft"
-            value={formData.chegadaMetalsoft}
-            onChangeText={(text) =>
-              setFormData({ ...formData, chegadaMetalsoft: text })
-            }
-          />
-          <Field
-            label="Entrada"
-            value={formData.entradaMetalsoft}
-            onChangeText={(text) =>
-              setFormData({ ...formData, entradaMetalsoft: text })
-            }
-          />
-          <Field
-            label="Saida"
-            value={formData.saidaMetalsoft}
-            onChangeText={(text) =>
-              setFormData({ ...formData, saidaMetalsoft: text })
-            }
-          />
+          {/* Hora Entrada Metalsoft */}
+          <View>
+            <Text style={styles.label}>Entrada:</Text>
+          </View>
+          <TouchableOpacity onPress={() => setEntradaMetalsoftPickerVisible(true)}>
+            <Text style={styles.input}>{formData.EntradaMetalsoft}</Text>
+          </TouchableOpacity>{isEntradaMetalsoftPickerVisible && (
+            <DatePicker
+              mode="time"
+              minuteInterval={3}
+              onTimeChange={(selectedTime) => {
+                setSelectedEntradaMetalsoftTime(selectedTime);
+                setFormData({ ...formData, EntradaMetalsoft: selectedTime })
+                setEntradaMetalsoftPickerVisible(false);
+              }}
+            />
+          )}
+          {/* Hora Entrada Metalsoft  */}
+          {/* Hora Saída Metalsoft */}
+          <View>
+            <Text style={styles.label}>Saída:</Text>
+          </View>
+          <TouchableOpacity onPress={() => setsaidaMetalsoftPickerVisible(true)}>
+            <Text style={styles.input}>{formData.saidaMetalsoft}</Text>
+          </TouchableOpacity>{issaidaMetalsoftPickerVisible && (
+            <DatePicker
+              mode="time"
+              minuteInterval={3}
+              onTimeChange={(selectedTime) => {
+                setSelectedsaidaMetalsoftTime(selectedTime);
+                setFormData({ ...formData, saidaMetalsoft: selectedTime })
+                setsaidaMetalsoftPickerVisible(false);
+              }}
+            />
+          )}
+          {/* Hora Saída Metalsoft  */}
+          {/* Hora Chegada Metalsoft */}
+          <View>
+            <Text style={styles.label}>Chegada:</Text>
+          </View>
+          <TouchableOpacity onPress={() => setchegadaMetalsoftPickerVisible(true)}>
+            <Text style={styles.input}>{formData.chegadaMetalsoft}</Text>
+          </TouchableOpacity>{ischegadaMetalsoftPickerVisible && (
+            <DatePicker
+              mode="time"
+              minuteInterval={3}
+              onTimeChange={(selectedTime) => {
+                setSelectedchegadaMetalsoftTime(selectedTime);
+                setFormData({ ...formData, chegadaMetalsoft: selectedTime })
+                setchegadaMetalsoftPickerVisible(false);
+              }}
+            />
+          )}
+          {/* Hora Chegada Metalsoft  */}
           <Text style={styles.sectionLabel}>Cliente</Text>
           {/* Hora Entrada Cliente */}
           <View>
@@ -638,22 +770,44 @@ const OSForm = ({ navigation }) => {
               }}
             />
           )}
-          {/* Fim Hora Entrada Cliente */}
-          <Field
-            label="Fim Almoço"
-            value={formData.fimAlmocoCliente}
-            onChangeText={(text) =>
-              setFormData({ ...formData, fimAlmocoCliente: text })
-            }
-          />
-          <Field
-            label="Saída"
-            value={formData.saidaCliente}
-            onChangeText={(text) =>
-              setFormData({ ...formData, saidaCliente: text })
-            }
-          />
+          {/* Fim Inicio almoço  */}
 
+          {/* Hora Fim almoço */}
+          <View>
+            <Text style={styles.label}>Fim Almoço:</Text>
+          </View>
+          <TouchableOpacity onPress={() => setFimAlmocoClientePickerVisible(true)}>
+            <Text style={styles.input}>{formData.FimAlmocoCliente}</Text>
+          </TouchableOpacity>{isFimAlmocoClientePickerVisible && (
+            <DatePicker
+              mode="time"
+              minuteInterval={3}
+              onTimeChange={(selectedTime) => {
+                setSelectedFimAlmocoClienteTime(selectedTime);
+                setFormData({ ...formData, FimAlmocoCliente: selectedTime })
+                setFimAlmocoClientePickerVisible(false);
+              }}
+            />
+          )}
+          {/* Fim Fim almoço  */}
+          {/* Hora Saída Cliente */}
+          <View>
+            <Text style={styles.label}>Saída:</Text>
+          </View>
+          <TouchableOpacity onPress={() => setsaidaClientePickerVisible(true)}>
+            <Text style={styles.input}>{formData.saidaCliente}</Text>
+          </TouchableOpacity>{issaidaClientePickerVisible && (
+            <DatePicker
+              mode="time"
+              minuteInterval={3}
+              onTimeChange={(selectedTime) => {
+                setSelectedsaidaClienteTime(selectedTime);
+                setFormData({ ...formData, saidaCliente: selectedTime })
+                setsaidaClientePickerVisible(false);
+              }}
+            />
+          )}
+          {/* Hora Saída Cliente  */}
           <Text style={styles.sectionLabel}>Serviços Executados</Text>
           <Field
             label="Descrição"

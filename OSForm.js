@@ -363,13 +363,12 @@ const OSForm = ({ navigation }) => {
   };
 
   //HORA FIM ALMOCO
-  const openFimAlmocoClienteTimePicker = () => {
-    setFormData({ ...formData, isTimePickerVisible: true });
-  };
-
   const [isFimAlmocoClientePickerVisible, setFimAlmocoClientePickerVisible] = useState(false);
   const [selectedFimAlmocoClienteTime, setSelectedFimAlmocoClienteTime] = useState(null);
 
+  const openFimAlmocoClienteTimePicker = () => {
+    setFormData({ ...formData, isTimePickerVisible: true });
+  };
   const handleFimAlmocoTimeChange = (event, selectedTime) => {
     if (selectedTime) {
       const formattedTime = selectedTime.toLocaleTimeString();
@@ -382,6 +381,7 @@ const OSForm = ({ navigation }) => {
       setFormData({ ...formData, isTimePickerVisible: false });
     }
   };
+
   ///HORA SAIDA CLIENTE
   const opensaidaClienteTimePicker = () => {
     setFormData({ ...formData, isTimePickerVisible: true });
@@ -685,14 +685,14 @@ const OSForm = ({ navigation }) => {
             <Text style={styles.label}>Entrada:</Text>
           </View>
           <TouchableOpacity onPress={() => setEntradaMetalsoftPickerVisible(true)}>
-            <Text style={styles.input}>{formData.EntradaMetalsoft}</Text>
+            <Text style={styles.input}>{formData.entradaMetalsoft}</Text>
           </TouchableOpacity>{isEntradaMetalsoftPickerVisible && (
             <DatePicker
               mode="time"
               minuteInterval={3}
               onTimeChange={(selectedTime) => {
                 setSelectedEntradaMetalsoftTime(selectedTime);
-                setFormData({ ...formData, EntradaMetalsoft: selectedTime })
+                setFormData({ ...formData, entradaMetalsoft: selectedTime })
                 setEntradaMetalsoftPickerVisible(false);
               }}
             />
@@ -777,14 +777,14 @@ const OSForm = ({ navigation }) => {
             <Text style={styles.label}>Fim Almoço:</Text>
           </View>
           <TouchableOpacity onPress={() => setFimAlmocoClientePickerVisible(true)}>
-            <Text style={styles.input}>{formData.FimAlmocoCliente}</Text>
+            <Text style={styles.input}>{formData.fimAlmocoCliente}</Text>
           </TouchableOpacity>{isFimAlmocoClientePickerVisible && (
             <DatePicker
               mode="time"
               minuteInterval={3}
               onTimeChange={(selectedTime) => {
                 setSelectedFimAlmocoClienteTime(selectedTime);
-                setFormData({ ...formData, FimAlmocoCliente: selectedTime })
+                setFormData({ ...formData, fimAlmocoCliente: selectedTime })
                 setFimAlmocoClientePickerVisible(false);
               }}
             />
